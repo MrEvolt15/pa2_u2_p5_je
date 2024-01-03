@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,13 +28,13 @@ public class Empleado {
     @Column(name = "empl_fecha_ingreso")
     private LocalDateTime fechaIngreso;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "empl_ciu_id")
     private Ciudadano ciudadano;
 
     // SETS Y GETS
     public Integer getId() {
-        return id;
+        return id; 
     }
 
     public void setId(Integer id) {
