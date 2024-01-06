@@ -1,32 +1,34 @@
 package com.uce.edu;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.repository.modelo.Autor;
 import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.repository.modelo.Habitacion;
 import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
 import com.uce.edu.service.IHotelService;
+import com.uce.edu.service.ILibroService;
 
 
 @SpringBootApplication
 public class Pa2U2P5JeApplication implements CommandLineRunner {
 	@Autowired
-	private IEmpleadoService empleadoService;
-	@Autowired
-	private ICiudadanoService ciudadanoService;
-	@Autowired
-	private IHotelService hotelService;
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5JeApplication.class, args);
@@ -34,43 +36,29 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*
-		Ciudadano ciu1 = new Ciudadano();
-		ciu1.setNombre("Mauricio");
-		ciu1.setApellido("Torres");
-		//ciu1.setId(3);
+		Libro l1 = new Libro();
+		l1.setTitulo("Java");
+		l1.setFechaPublicacion(LocalDate.now());
 		
+		Autor a1 = new Autor();
+		a1.setNombre("Joel");
+		a1.setNacional("Ecuador");
+		Autor a2 = new Autor();
+		a2.setNacional("Argentina");
+		a2.setNombre("Julio");
 
-		Empleado empl1 = new Empleado();
-		empl1.setFechaIngreso(LocalDateTime.now());
-		empl1.setSalario(BigDecimal.valueOf(100));
-		ciu1.setEmpleado(empl1);
-		//Ciudadano c2 = this.ciudadanoService.buscar(1);
-		empl1.setCiudadano(ciu1);
-		
-		this.ciudadanoService.guardar(ciu1);
-		//this.empleadoService.guardar(empl1);
-		*/
-		Hotel h1 = new Hotel();
-		h1.setDireccion("Diego de Almagro");
-		h1.setNombre("Hilton");
+		Set<Autor> autores = new HashSet<>();
+		autores.add(a1);
+		autores.add(a2);
 
-		Habitacion ha1 = new Habitacion();
-		ha1.setNumero("H1");
-		ha1.setClase("normal");
-		ha1.setHotel(h1);
+		Set<Libro> libros = new HashSet<>();
+		libros.add(l1);
 
-		Habitacion ha2 = new Habitacion();
-		ha2.setClase("Vip");
-		ha2.setNumero("HV2");
-		ha2.setHotel(h1);
-		
-		List<Habitacion> habitaciones = new ArrayList<>();
-		habitaciones.add(ha2);
-		habitaciones.add(ha1);
-		h1.setHabitaciones(habitaciones);
-		
-		this.hotelService.guardar(h1);
+		l1.setAutores(autores);
+		a2.setLibros(libros);
+		a1.setLibros(libros);
+
+		this.iLibroService.guardar(l1);
 	}
 
 }
