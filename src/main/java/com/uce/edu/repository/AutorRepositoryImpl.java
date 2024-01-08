@@ -2,7 +2,7 @@ package com.uce.edu.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.repository.modelo.Autor;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,24 +10,28 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class LibroRepositoryImpl implements ILibroRepository{
+public class AutorRepositoryImpl implements IAutorRepository{
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
-    public void insertar(Libro libro) {
-        this.entityManager.persist(libro);
+    public void insertar(Autor autor) {
+       this.entityManager.persist(autor);
     }
+
     @Override
-    public Libro seleccionar(Integer id) {
-       return this.entityManager.find(Libro.class, id);
+    public Autor seleccionar(Integer id) {
+       return this.entityManager.find(Autor.class, id);
     }
+
     @Override
-    public void actualizar(Libro libro) {
-        this.entityManager.merge(libro);
+    public void actualizar(Autor autor) {
+      this.entityManager.merge(autor);
     }
+
     @Override
     public void eliminar(Integer id) {
-       this.entityManager.remove(this.seleccionar(id));
+        this.entityManager.remove(this.seleccionar(id));
     }
 
 }

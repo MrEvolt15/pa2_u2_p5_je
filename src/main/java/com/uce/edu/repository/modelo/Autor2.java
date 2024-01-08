@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "autor2")
+//@Entity
+//@Table(name = "autor2")
 public class Autor2 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_autor2")

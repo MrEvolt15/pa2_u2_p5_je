@@ -40,25 +40,45 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 		l1.setTitulo("Java");
 		l1.setFechaPublicacion(LocalDate.now());
 		
+		Libro l2 = new Libro();
+		l2.setFechaPublicacion(LocalDate.now());
+		l2.setTitulo("Python");
+		
 		Autor a1 = new Autor();
 		a1.setNombre("Joel");
 		a1.setNacional("Ecuador");
+		
 		Autor a2 = new Autor();
 		a2.setNacional("Argentina");
 		a2.setNombre("Julio");
 
+		Autor a3 = new Autor();
+		a3.setNacional("Ecuador");
+		a3.setNombre("Juan");
+		
 		Set<Autor> autores = new HashSet<>();
 		autores.add(a1);
 		autores.add(a2);
 
 		Set<Libro> libros = new HashSet<>();
 		libros.add(l1);
+		
+		Set<Autor> autores2 = new HashSet<>();
+		autores2.add(a3);
+		autores2.add(a2);
+		Set<Libro> libros2 = new HashSet<>();
+		libros2.add(l2);
+		libros2.add(l1);
 
 		l1.setAutores(autores);
 		a2.setLibros(libros);
 		a1.setLibros(libros);
 
-		this.iLibroService.guardar(l1);
+		l2.setAutores(autores2);
+		a3.setLibros(libros2);
+
+		//this.iLibroService.guardar(l1);
+		this.iLibroService.guardar(l2);
 	}
 
 }

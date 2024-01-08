@@ -14,5 +14,17 @@ public class LibroServiceImpl implements ILibroService{
     public void guardar(Libro libro) {
         this.iLibroRepository.insertar(libro);
     }
+    @Override
+    public Libro buscar(Integer id) {
+      return this.iLibroRepository.seleccionar(id);
+    }
+    @Override
+    public void actualizar(Libro libro) {
+       this.iLibroRepository.actualizar(libro);
+    }
+    @Override
+    public void borrar(Integer id) {
+        this.iLibroRepository.eliminar(id);
+    }
 
 }
