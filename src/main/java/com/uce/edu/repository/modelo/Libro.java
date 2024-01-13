@@ -12,11 +12,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "libro")
+@NamedQuery(name = "Libro.queryBuscarPorTitulo",query = "SELECT l from Libro l WHERE l.titulo = :titulo")
+@NamedQuery(name = "Libro.queryBuscarPorFecha",query = "SELECT l from Libro l WHERE l.fechaPublicacion > :fecha")
+
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_libro")
@@ -27,6 +31,7 @@ public class Libro {
     private String titulo;
     @Column(name = "lib_fecha_publicacion")
     private LocalDate fechaPublicacion;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "autor_libro", joinColumns = @JoinColumn(name="auli_id_libro"),//elegimos la tabla secundaria
     inverseJoinColumns = @JoinColumn(name="auli_id_autor"))//elegimos la tabla principal
@@ -56,6 +61,10 @@ public class Libro {
     }
     public void setAutores(Set<Autor> autores) {
         this.autores = autores;
+    }
+    @Override
+    public String toString() {
+        return "Libro [id=" + id + ", titulo=" + titulo + ", fechaPublicacion=" + fechaPublicacion + "]";
     }
 
     
