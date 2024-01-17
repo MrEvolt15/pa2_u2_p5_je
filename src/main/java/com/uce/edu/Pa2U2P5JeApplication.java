@@ -38,7 +38,7 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Empleado e1 =this.ciudadanoService.busacarPorCedula("1234");
 		System.out.println(e1);
-		//Ciudadano c1 = this.ciudadanoService.buscarPorCedulaCiu("1234");
-		//System.out.println(c1);
+		Ciudadano c1 = this.ciudadanoService.buscarPorCedulaCiu("1234");
+		System.out.println(c1);
 	}
 }
