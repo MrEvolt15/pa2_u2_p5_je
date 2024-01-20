@@ -7,4 +7,6 @@ public interface IHotelRepository {
     public Hotel seleccionar(Integer id);
     public void actualizar(Hotel hotel);
     public void eliminar(Integer id);
+
+    public Hotel seleccionarPorNombreNamed(String nombre);
 }

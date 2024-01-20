@@ -30,4 +30,9 @@ public class HotelServiceImpl implements IHotelService{
         this.hotelRepository.eliminar(id);
     }
 
+    @Override
+    public Hotel buscarPorNombreNamed(String nombre) {
+        return this.hotelRepository.seleccionarPorNombreNamed(nombre);
+    }
+
 }

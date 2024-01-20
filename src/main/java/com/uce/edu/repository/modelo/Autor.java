@@ -9,11 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "autor")
+@NamedQuery(name = "Autor.queryBuscarPorTitulo",query = "SELECT a from Autor a WHERE a.nombre = :nombre")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_autor")
@@ -22,14 +24,20 @@ public class Autor {
     private Integer id;
     @Column(name = "auto_nombre")
     private String nombre;
+    @Column(name = "auto_aperrlido")
+    private String apellido;
+
+    
     @Column(name = "auto_nacional")
     private String nacional;
     @ManyToMany(mappedBy = "autores",cascade = CascadeType.ALL)
     private Set<Libro> libros;
 
+    
     //SETS Y GETS      
     public Integer getId() {
         return id;
+        
     }
     public void setId(Integer id) {
         this.id = id;
@@ -51,6 +59,12 @@ public class Autor {
     }
     public void setLibros(Set<Libro> libros) {
         this.libros = libros;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     

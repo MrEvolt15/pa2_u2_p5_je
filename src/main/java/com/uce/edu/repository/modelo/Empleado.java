@@ -27,6 +27,8 @@ public class Empleado {
     private BigDecimal salario;
     @Column(name = "empl_fecha_ingreso")
     private LocalDateTime fechaIngreso;
+    @Column(name = "empl_cargo")
+    private String cargo;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "empl_ciu_id")
@@ -68,6 +70,14 @@ public class Empleado {
     @Override
     public String toString() {
         return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + "]";
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
     
 }

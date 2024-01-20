@@ -11,12 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "hotel")
+@NamedQuery(name = "Hotel.queryBuscarPorNombre",query = "SELECT h from Hotel h WHERE h.nombre = :nombre")
 public class Hotel {
 
     @Id

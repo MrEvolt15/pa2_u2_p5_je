@@ -26,5 +26,9 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
     public void actualizar(Empleado empleado) {
         this.empleadoRepository.actualizar(empleado);
     }
+    @Override
+    public Empleado buscarPorCargo(String cargo) {
+        return this.empleadoRepository.seleccionarPorCargo(cargo);
+    }
 
 }

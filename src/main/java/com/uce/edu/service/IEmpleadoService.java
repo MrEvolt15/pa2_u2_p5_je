@@ -8,4 +8,5 @@ public interface IEmpleadoService {
     public Empleado buscar(Integer id);
     public void eliminar(Integer id);
     public void actualizar(Empleado empleado);
+    public Empleado buscarPorCargo(String cargo);
 }

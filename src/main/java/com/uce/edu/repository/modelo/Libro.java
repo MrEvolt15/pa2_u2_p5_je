@@ -3,6 +3,9 @@ package com.uce.edu.repository.modelo;
 import java.time.LocalDate;
 import java.util.Set;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,10 +34,11 @@ public class Libro {
     private String titulo;
     @Column(name = "lib_fecha_publicacion")
     private LocalDate fechaPublicacion;
-
+    
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "autor_libro", joinColumns = @JoinColumn(name="auli_id_libro"),//elegimos la tabla secundaria
     inverseJoinColumns = @JoinColumn(name="auli_id_autor"))//elegimos la tabla principal
+    
     private Set<Autor> autores;
 
     //SETS Y GETS

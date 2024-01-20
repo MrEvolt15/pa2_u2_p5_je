@@ -1,5 +1,6 @@
 package com.uce.edu.repository;
 
+
 import com.uce.edu.repository.modelo.Empleado;
 
 public interface IEmpleadoRepository {
@@ -7,4 +8,6 @@ public interface IEmpleadoRepository {
     public Empleado seleccionar(Integer id);
     public void eliminar(Integer id);
     public void actualizar(Empleado empleado);
+    public Empleado seleccionarPorCargo(String cargo);
+    
 }

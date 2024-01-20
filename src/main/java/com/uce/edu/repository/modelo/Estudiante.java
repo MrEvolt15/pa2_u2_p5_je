@@ -8,11 +8,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "estudiante")
+@NamedQuery(name = "Estudiante.queryBuscarPorApellido",query = "SELECT e from Estudiante e WHERE e.apellido = :apellido")
+@NamedQuery(name = "Estudiante.queryBuscarPorFecha",query = "SELECT e from Estudiante e WHERE e.fechaNacimiento > :fecha")
 public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")

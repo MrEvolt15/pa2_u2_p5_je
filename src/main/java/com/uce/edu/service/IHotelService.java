@@ -7,4 +7,5 @@ public interface IHotelService {
     public Hotel buscar(Integer id);
     public void actualizar(Hotel hotel);
     public void borrar(Integer id);
+    public Hotel buscarPorNombreNamed(String nombre);
 }

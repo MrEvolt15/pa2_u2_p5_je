@@ -8,11 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "habitacion")
+@NamedQuery(name = "Habitacion.queryBuscarPorClase",query = "SELECT h from Habitacion h WHERE h.clase = :clase")
 public class Habitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_habitacion")

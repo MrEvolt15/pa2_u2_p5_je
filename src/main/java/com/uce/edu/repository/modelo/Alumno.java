@@ -18,7 +18,6 @@ public class Alumno {
     private Integer id;
     @Column(name = "alum_nombre")
     private String nombre;
-
     //SETS Y GETS
     public Integer getId() {
         return id;
