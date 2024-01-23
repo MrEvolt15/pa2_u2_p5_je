@@ -19,4 +19,5 @@ public interface IEstudianteService {
 	public Estudiante seleccionarPorCedula(String cedula);
 	public Estudiante buscarPorApellidoNamed(String apellido);
 	public List<Estudiante> buscarPorFecha(LocalDateTime fecha);
+	public List<Estudiante> buscarPorIntervaloFechaCriteria(LocalDateTime fechaInicio,LocalDateTime fechaFin);
 }

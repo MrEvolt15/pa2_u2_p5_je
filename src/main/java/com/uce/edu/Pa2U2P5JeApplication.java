@@ -1,13 +1,22 @@
 package com.uce.edu;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.repository.modelo.Ciudadano;
-
+import com.uce.edu.repository.modelo.Estudiante;
+import com.uce.edu.repository.modelo.Habitacion;
+import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.service.IEstudianteService;
+import com.uce.edu.service.IHabitacionService;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5JeApplication implements CommandLineRunner {
@@ -23,6 +32,12 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 
 	@Autowired
 	private ICiudadanoService ciudadanoService;
+	@Autowired
+	private IEstudianteService estudianteService;
+	@Autowired
+	private IHabitacionService habitacionService;
+	@Autowired
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5JeApplication.class, args);
@@ -30,23 +45,18 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Criteria API Query
-		Ciudadano c = this.ciudadanoService.buscarPorApellido("Narvaez");
-		System.out.println(c);
+		List<Estudiante> e1 = this.estudianteService.buscarPorIntervaloFechaCriteria(LocalDateTime.of(2023, 1, 1, 0, 0, 0), LocalDateTime.of(2024, 1, 1, 0, 0, 0));
+		for (Estudiante estudiante : e1) {
+			System.out.println(estudiante);
+		}
+		Habitacion hab1 = this.habitacionService.buscarPorNumeroCriteria("H1");
+		System.out.println(hab1);
+		Habitacion hab2 = this.habitacionService.buscarPrimeroContiene("H1");
+		System.out.println(hab2);
+		Libro lib1 = this.iLibroService.buscarPorTituloMasFecha("Python", LocalDate.of(2023, 1, 1));
+		System.out.println(lib1);
+		Libro lib3 = this.iLibroService.buscarSegundoTitulo("Python");
+		System.out.println(lib3);
 
-		//
-		Ciudadano c1 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "1726333196");
-		System.out.println(c1);
-		Ciudadano c2 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0526333196");
-		System.out.println(c2);
-		//Ciudadano c3 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0626333196");
-		//System.out.println(c3);
-
-		System.out.println("Criteria API Query AND OR");
-
-		Ciudadano c4 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez1111", "1726333196");
-		System.out.println(c4);
-		Ciudadano c5 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0526333196");
-		System.out.println(c5);
 	}
 }

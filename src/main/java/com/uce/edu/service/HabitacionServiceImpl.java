@@ -21,5 +21,13 @@ public class HabitacionServiceImpl implements IHabitacionService{
     public Habitacion buscarPorNumero(String numero) {
         return this.habitacionRepository.seleccionarPorNumero(numero);
     }
+    @Override
+    public Habitacion buscarPorNumeroCriteria(String numero) {
+        return this.habitacionRepository.seleccionarPorNumeroCriteria(numero);
+    }
+    @Override
+    public Habitacion buscarPrimeroContiene(String numero) {
+        return this.habitacionRepository.seleccionarPrimeroContiene(numero);
+    }
 
 }

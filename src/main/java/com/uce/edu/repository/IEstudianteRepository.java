@@ -17,5 +17,6 @@ public interface IEstudianteRepository {
 	public Estudiante seleccionarPorCedula(String cedula);
 	public Estudiante seleccionarPorApellidoNamed(String apellido);
 	public List<Estudiante> seleccionarPorFecha(LocalDateTime fecha);
+	public List<Estudiante> seleccionarPorIntervaloFechaCriteria(LocalDateTime fechaInicio,LocalDateTime fechaFin);
 
 }

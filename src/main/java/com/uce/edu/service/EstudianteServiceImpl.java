@@ -49,4 +49,9 @@ public class EstudianteServiceImpl implements IEstudianteService{
         return this.estudianteRepository.seleccionarPorFecha(fecha);
     }
 
+    @Override
+    public List<Estudiante> buscarPorIntervaloFechaCriteria(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        return this.estudianteRepository.seleccionarPorIntervaloFechaCriteria(fechaInicio, fechaFin);
+    }
+
 }

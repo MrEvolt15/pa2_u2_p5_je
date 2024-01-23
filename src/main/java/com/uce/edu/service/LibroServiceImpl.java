@@ -64,4 +64,14 @@ public class LibroServiceImpl implements ILibroService {
         return this.iLibroRepository.seleccionarPorFechaNamed(fecha);
     }
 
+    @Override
+    public Libro buscarPorTituloMasFecha(String titulo, LocalDate fechaPublicaion) {
+        return this.iLibroRepository.seleccionarPorTituloMasFecha(titulo, fechaPublicaion);
+    }
+
+    @Override
+    public Libro buscarSegundoTitulo(String titulo) {
+        return this.iLibroRepository.seleccionarSegundoTItulo(titulo);
+    }
+
 }

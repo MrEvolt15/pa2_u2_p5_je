@@ -16,4 +16,7 @@ public interface ILibroRepository {
     public List<Libro> seleccionarPorFechaTyped(LocalDate fechaPublicacion);
     public Libro seleccionarPorTituloNamed(String titulo);
     public List<Libro> seleccionarPorFechaNamed(LocalDate fechaPublicacion);
+
+    public Libro seleccionarPorTituloMasFecha(String titulo, LocalDate fechaPublicaion);
+    public Libro seleccionarSegundoTItulo(String titulo);
 }
