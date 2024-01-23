@@ -35,5 +35,17 @@ public class CiudadanoServiceImpl implements ICiudadanoService{
     public Ciudadano buscarPorCedulaCiu(String cedula) {
       return this.ciudadanoRepository.seleccionarPorCedulaCiu(cedula);
     }
+    @Override
+    public Ciudadano buscarPorApellido(String apellido) {
+      return this.ciudadanoRepository.seleccionarPorApellido(apellido);
+    }
+    @Override
+    public Ciudadano buscarPorCriteria(String nombre, String apellido, String cedula) {
+      return this.ciudadanoRepository.seleccionarPorCriteria(nombre, apellido, cedula);
+    }
+    @Override
+    public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
+      return this.ciudadanoRepository.seleccionarPorCriteriaAndOr(nombre, apellido, cedula);
+    }
 
 }

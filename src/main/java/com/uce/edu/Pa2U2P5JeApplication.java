@@ -1,46 +1,28 @@
 package com.uce.edu;
 
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Autor;
-import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Estudiante;
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IAutorService;
-import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IEstudianteService;
-import com.uce.edu.service.IHabitacionService;
-import com.uce.edu.service.IHotelService;
+import com.uce.edu.repository.modelo.Ciudadano;
 
+import com.uce.edu.service.ICiudadanoService;
 
 @SpringBootApplication
 public class Pa2U2P5JeApplication implements CommandLineRunner {
-	//1. Query (JPQL) es el lenguaje de consulta orientado a objetos para la consulta a la base de datos
-	//1.1 TypedQuery
-	//1.2NamedQUery
+	// 1. Query (JPQL) es el lenguaje de consulta orientado a objetos para la
+	// consulta a la base de datos
+	// 1.1 TypedQuery
+	// 1.2NamedQUery
 
-	//2.NativeQUery(SQL puro) cuando tengo querys complejas, para optimizar rendimiento, pierdo la orientacion a objetos
-	//3.Criteria Api Query
+	// 2.NativeQUery(SQL puro) cuando tengo querys complejas, para optimizar
+	// rendimiento, pierdo la orientacion a objetos
+	// 3.Criteria Api Query(Query dinamicos)
+	// para querys
 
 	@Autowired
-	private IEmpleadoService empleadoService;
-	@Autowired
-	private IAutorService autorService;
-	@Autowired
-	private IEstudianteService estudianteService;
-	@Autowired
-	private IHabitacionService habitacionService;
-	@Autowired
-	private IHotelService hotelService;
+	private ICiudadanoService ciudadanoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5JeApplication.class, args);
@@ -48,30 +30,23 @@ public class Pa2U2P5JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Empleado e1 = this.empleadoService.buscarPorCargo("ingeniero");
-		System.out.println(e1);
-		Autor a1 = this.autorService.buscarPorNombre("Juan");
-		System.out.println(a1);
-		Autor a2 = this.autorService.buscarPorApellido("Gonzales");
-		System.out.println(a2);
-		Habitacion hab1 = this.habitacionService.buscarPorNumero("H1");
-		System.out.println(hab1);
-		Estudiante estu = this.estudianteService.seleccionarPorCedula("123");
-		System.out.println(estu);
+		// Criteria API Query
+		Ciudadano c = this.ciudadanoService.buscarPorApellido("Narvaez");
+		System.out.println(c);
 
-		Autor aN1 = this.autorService.buscarPorNombreNamed("Juan");
-		System.out.println(aN1);
-		Estudiante e = this.estudianteService.buscarPorApellidoNamed("Espinosa");
-		System.out.println(e);
-		List<Estudiante> estudiantes = this.estudianteService.buscarPorFecha(LocalDateTime.of(1998, 1, 1, 0, 0, 0));
-		for (Estudiante estudiante : estudiantes) {
-			System.out.println(estudiante);
-		}
-		List<Habitacion> habitaciones = this.habitacionService.buscarPorClase("Vip");
-		for (Habitacion habitacion : habitaciones) {
-			System.out.println(habitacion);
-		}
-		Hotel hotel = this.hotelService.buscarPorNombreNamed("Hilton");
-		System.out.println(hotel);
+		//
+		Ciudadano c1 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "1726333196");
+		System.out.println(c1);
+		Ciudadano c2 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0526333196");
+		System.out.println(c2);
+		//Ciudadano c3 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0626333196");
+		//System.out.println(c3);
+
+		System.out.println("Criteria API Query AND OR");
+
+		Ciudadano c4 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez1111", "1726333196");
+		System.out.println(c4);
+		Ciudadano c5 = this.ciudadanoService.buscarPorCriteria("Santiago", "Narvaez", "0526333196");
+		System.out.println(c5);
 	}
 }
